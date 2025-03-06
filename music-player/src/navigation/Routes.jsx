@@ -9,11 +9,11 @@ import { Icon } from 'react-native-elements';
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
-    const [isLiked, setIsLiked] = useState(false); // Estado para manejar si la playlist está "liked"
+    const [isLiked, setIsLiked] = useState(false); 
 
-    // Función para manejar el clic en el ícono de corazón
+
     const handleLikePress = () => {
-        setIsLiked(!isLiked); // Cambiar el estado al hacer clic
+        setIsLiked(!isLiked); 
     };
 
     return (
@@ -21,18 +21,18 @@ export default function Routes() {
             <Stack.Navigator
                 screenOptions={{
                     headerStyle: {
-                        backgroundColor: '#121212', // Fondo oscuro para la barra de navegación
+                        backgroundColor: '#121212',
                     },
-                    headerTintColor: '#ffffff', // Color del texto y los íconos en la barra (blanco)
+                    headerTintColor: '#ffffff', 
                     headerTitleStyle: {
-                        fontWeight: 'bold', // Estilo del título en negrita
-                        fontSize: 18, // Tamaño del título
+                        fontWeight: 'bold', 
+                        fontSize: 18, 
                     },
                     contentStyle: {
-                        backgroundColor: '#121212', // Fondo oscuro para todas las pantallas
+                        backgroundColor: '#121212', 
                     },
                     headerBackTitleStyle: {
-                        color: '#b3b3b3', // Color del texto del botón de retroceso (gris claro)
+                        color: '#b3b3b3', 
                     },
                 }}
             >
@@ -41,7 +41,7 @@ export default function Routes() {
                     component={PlayerScreen} 
                     options={{ 
                         title: 'Reproductor',
-                        headerShown: false, // Ocultar la barra de navegación en esta pantalla
+                        headerShown: false, 
                     }} 
                 />
                 <Stack.Screen 
@@ -49,16 +49,16 @@ export default function Routes() {
                     component={PlaylistScreen} 
                     options={{ 
                         title: 'Lista de reproducción',
-                        headerBackTitle: 'Atrás', // Texto del botón de retroceso
-                        headerTintColor: '#1DB954', // Color verde para el botón de retroceso (similar a Spotify)
+                        headerBackTitle: 'Atrás', 
+                        headerTintColor: '#1DB954',
                         headerRight: () => (
-                            // Botón de corazón en la esquina derecha
+                        
                             <TouchableOpacity onPress={handleLikePress} style={{ marginRight: 15 }}>
                                 <Icon
-                                    name={isLiked ? 'heart' : 'heart-outline'} // Cambiar el ícono según el estado
+                                    name={isLiked ? 'heart' : 'heart-outline'} 
                                     type="material-community"
                                     size={26}
-                                    color={isLiked ? '#1DB954' : '#b3b3b3'} // Cambiar el color según el estado
+                                    color={isLiked ? '#1DB954' : '#b3b3b3'} 
                                 />
                             </TouchableOpacity>
                         ),

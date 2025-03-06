@@ -1,28 +1,27 @@
 import React from 'react';
 import { View, StyleSheet, Image, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Importa los iconos
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; 
 import CardListMusic from '../components/CardListMusic';
 
 const PlayerScreen = () => {
     const navigation = useNavigation();
 
     const handleCardPress = (cancion) => {
-        // Navegar a PlaylistScreen
+
         navigation.navigate('PlaylistScreen', { cancion });
     };
 
     return (
         <View style={styles.container}>
-            {/* Imagen */}
+
             <Image
                 source={{ uri: 'https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png' }}
                 style={styles.image}
             />
 
-            {/* Texto con iconos y botón de play */}
             <View style={styles.header}>
-                {/* Sección de texto con iconos (izquierda) */}
+            
                 <View style={styles.textSection}>
                     <Text style={styles.playlistTitle}>The Weeknd Playlist</Text>
                     <View style={styles.info}>
@@ -37,7 +36,7 @@ const PlayerScreen = () => {
                     </View>
                 </View>
 
-                {/* Botón de play (derecha) */}
+
                 <TouchableOpacity onPress={() => console.log('Reproducir playlist')}>
                     <Icon
                         name="play-circle"
@@ -47,7 +46,6 @@ const PlayerScreen = () => {
                 </TouchableOpacity>
             </View>
 
-            {/* CardListMusic */}
             <ScrollView style={styles.scrollView}>
                 <View style={styles.cardContainer}>
                     <CardListMusic
@@ -123,7 +121,7 @@ const PlayerScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#121212', // Fondo oscuro similar a Spotify
+        backgroundColor: '#121212',
     },
     header: {
         flexDirection: 'row',
@@ -137,7 +135,7 @@ const styles = StyleSheet.create({
     playlistTitle: {
         fontFamily: 'Poppins-Bold',
         fontSize: 24,
-        color: '#ffffff', // Texto blanco
+        color: '#ffffff', 
         marginBottom: 10,
     },
     info: {
@@ -152,7 +150,7 @@ const styles = StyleSheet.create({
     likesText: {
         fontFamily: 'Poppins-Regular',
         fontSize: 14,
-        color: '#b3b3b3', // Texto gris claro
+        color: '#b3b3b3',
     },
     duracion: {
         flexDirection: 'row',
@@ -162,7 +160,7 @@ const styles = StyleSheet.create({
     durationText: {
         fontFamily: 'Poppins-Regular',
         fontSize: 14,
-        color: '#b3b3b3', // Texto gris claro
+        color: '#b3b3b3',
     },
     image: {
         width: '100%',

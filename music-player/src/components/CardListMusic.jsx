@@ -4,11 +4,10 @@ import { Icon } from 'react-native-elements';
 
 export default function CardListMusic(props) {
     const { name, descripcion, imagen, onPress } = props;
-    const [isLiked, setIsLiked] = useState(false); // Estado para manejar si la canción está "liked"
+    const [isLiked, setIsLiked] = useState(false);
 
-    // Función para manejar el clic en el ícono de corazón
     const handleLikePress = () => {
-        setIsLiked(!isLiked); // Cambiar el estado al hacer clic
+        setIsLiked(!isLiked);
     };
 
     return (
@@ -16,31 +15,26 @@ export default function CardListMusic(props) {
             <View style={styles.container}>
                 <View style={styles.card}>
                     <View style={styles.content}>
-                        {/* Imagen de la canción */}
                         <Image
                             source={{ uri: imagen }}
                             style={styles.image}
                         />
 
-                        {/* Texto: Nombre de la canción y artista */}
                         <View style={styles.textContainer}>
                             <Text style={styles.title} numberOfLines={1}>{name}</Text>
                             <Text style={styles.artist} numberOfLines={1}>{descripcion}</Text>
                         </View>
 
-                        {/* Iconos: Like y menú */}
                         <View style={styles.iconsContainer}>
-                            {/* Ícono de corazón */}
                             <TouchableOpacity onPress={handleLikePress}>
                                 <Icon
-                                    name={isLiked ? 'heart' : 'heart-outline'} // Cambiar el ícono según el estado
+                                    name={isLiked ? 'heart' : 'heart-outline'}
                                     type="material-community"
                                     size={26}
-                                    color={isLiked ? '#1DB954' : '#b3b3b3'} // Cambiar el color según el estado
+                                    color={isLiked ? '#1DB954' : '#b3b3b3'}
                                     containerStyle={styles.icon}
                                 />
                             </TouchableOpacity>
-                            {/* Ícono de menú */}
                             <Icon
                                 name="dots-three-vertical"
                                 type="entypo"
@@ -59,13 +53,13 @@ export default function CardListMusic(props) {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        marginBottom: 8, // Espacio entre tarjetas
+        marginBottom: 8,
     },
     card: {
         width: '100%',
         padding: 10,
         borderRadius: 8,
-        backgroundColor: '#1e1e1e', // Fondo oscuro
+        backgroundColor: '#1e1e1e',
     },
     content: {
         flexDirection: 'row',
@@ -84,11 +78,11 @@ const styles = StyleSheet.create({
     title: {
         fontWeight: '600',
         fontSize: 16,
-        color: '#ffffff', // Texto blanco
+        color: '#ffffff',
     },
     artist: {
         fontSize: 14,
-        color: '#b3b3b3', // Texto gris claro
+        color: '#b3b3b3',
         marginTop: 4,
     },
     iconsContainer: {

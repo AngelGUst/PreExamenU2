@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
         shadowColor: '#1DB954', // Sombra en iOS
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
-        shadowRadius: 3,
+        shadowRadius: 3,    
     },
     lyricsButton: {
         alignSelf: 'flex-start', // Alinea el botón a la izquierda
