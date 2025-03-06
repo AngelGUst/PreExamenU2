@@ -5,93 +5,73 @@ import { Slider, Icon } from 'react-native-elements';
 
 const PlaylistScreen = () => {
     const route = useRoute();
-    const { cancion } = route.params || {}; // Extrae los datos de la canción
+    const { cancion } = route.params || {};
 
-    // Estado para controlar la reproducción y el progreso
     const [isPlaying, setIsPlaying] = useState(false);
-    const [progress, setProgress] = useState(0); // Progreso de la canción (0 a 100)
-    const [showLyrics, setShowLyrics] = useState(false); // Estado para mostrar/ocultar la letra
+    const [progress, setProgress] = useState(0);
+    const [showLyrics, setShowLyrics] = useState(false);
 
-    // Función para manejar el botón de play/pause
     const togglePlayPause = () => {
         setIsPlaying(!isPlaying);
     };
 
-    // Función para manejar el cambio en la barra de progreso
     const handleProgressChange = (value) => {
         setProgress(value);
     };
 
-    // Función para mostrar/ocultar la letra de la canción
     const toggleLyrics = () => {
         setShowLyrics(!showLyrics);
     };
 
     return (
         <View style={styles.container}>
-            {/* Imagen de la canción */}
             <Image
                 source={{ uri: cancion?.imagen }}
                 style={styles.image}
             />
-
-            {/* Información de la canción (nombre, artista y duración) */}
             <View style={styles.songInfo}>
                 <Text style={styles.title}>{cancion?.nombre}</Text>
                 <Text style={styles.artist}>{cancion?.artista}</Text>
             </View>
-
-            {/* Barra de progreso */}
             <Slider
                 style={styles.progressBar}
                 minimumValue={0}
                 maximumValue={100}
                 value={progress}
                 onValueChange={handleProgressChange}
-                minimumTrackTintColor="#1DB954" // Color de la parte completada
-                maximumTrackTintColor="#333" // Color de la parte no completada
-                thumbTintColor="#1DB954" // Color del control deslizante
+                minimumTrackTintColor="#1DB954"
+                maximumTrackTintColor="#333"
+                thumbTintColor="#1DB954"
                 thumbStyle={styles.thumb}
             />
-
-            {/* Tiempo debajo del slider */}
             <View style={styles.timeContainer}>
                 <Text style={styles.timeText}>0:00</Text>
                 <Text style={styles.timeText}>{cancion?.duracion}</Text>
             </View>
-
-            {/* Controles de reproducción (centrados) */}
             <View style={styles.controlsContainer}>
-                {/* Botón de anterior */}
                 <Icon
                     name="skip-previous"
                     type="material"
-                    size={30} // Ícono más pequeño
+                    size={30}
                     color="#fff"
                     onPress={() => console.log('Canción anterior')}
                 />
-
-                {/* Botón de play/pause */}
                 <Icon
                     name={isPlaying ? "pause" : "play-arrow"}
                     type="material"
-                    size={40} // Ícono más pequeño
+                    size={40}
                     color="#000"
                     onPress={togglePlayPause}
                     containerStyle={styles.playButton}
                 />
-
-                {/* Botón de siguiente */}
                 <Icon
                     name="skip-next"
                     type="material"
-                    size={30} // Ícono más pequeño
+                    size={30}
                     color="#fff"
                     onPress={() => console.log('Siguiente canción')}
                 />
             </View>
-
-            {/* Botón para ver la letra de la canción (alineado a la izquierda) */}
             <Icon
                 name="format-align-left"
                 type="material"
@@ -100,8 +80,6 @@ const PlaylistScreen = () => {
                 onPress={toggleLyrics}
                 containerStyle={styles.lyricsButton}
             />
-
-            {/* Recuadro para la letra de la canción */}
             {showLyrics && (
                 <View style={styles.lyricsContainer}>
                     <ScrollView>
@@ -120,7 +98,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         padding: 20,
-        backgroundColor: '#121212', // Fondo oscuro similar a Spotify
+        backgroundColor: '#121212',
     },
     image: {
         width: 300,
@@ -136,26 +114,22 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#fff', // Texto blanco
+        color: '#fff',
         marginBottom: 5,
     },
     artist: {
         fontSize: 16,
-        color: '#b3b3b3', // Texto gris claro
-    },
-    duration: {
-        fontSize: 14,
-        color: '#b3b3b3', // Texto gris claro
+        color: '#b3b3b3',
     },
     progressBar: {
         width: '90%',
-        marginTop: 10, // Ajusté el margen superior para subir el slider
+        marginTop: 10,
     },
     thumb: {
-        width: 12, // Ancho de la bolita
-        height: 12, // Alto de la bolita
-        borderRadius: 6, // Hace que sea circular
-        backgroundColor: '#1DB954', // Color de la bolita
+        width: 12,
+        height: 12,
+        borderRadius: 6,
+        backgroundColor: '#1DB954',
     },
     timeContainer: {
         flexDirection: 'row',
@@ -165,7 +139,7 @@ const styles = StyleSheet.create({
     },
     timeText: {
         fontSize: 14,
-        color: '#b3b3b3', // Texto gris claro
+        color: '#b3b3b3',
     },
     controlsContainer: {
         flexDirection: 'row',
@@ -177,30 +151,30 @@ const styles = StyleSheet.create({
     playButton: {
         backgroundColor: '#1DB954',
         borderRadius: 50,
-        padding: 10, // Padding reducido
-        elevation: 5, // Sombra en Android
-        shadowColor: '#1DB954', // Sombra en iOS
+        padding: 10,
+        elevation: 5,
+        shadowColor: '#1DB954',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 3,    
     },
     lyricsButton: {
-        alignSelf: 'flex-start', // Alinea el botón a la izquierda
-        marginLeft: 20, // Margen izquierdo para separarlo del borde
-        marginTop: 20, // Espacio entre los controles y el botón de letra
+        alignSelf: 'flex-start',
+        marginLeft: 20,
+        marginTop: 20,
     },
     lyricsContainer: {
-        width: 300, // Ancho del recuadro
-        height: 300, // Alto del recuadro
-        backgroundColor: '#333', // Fondo oscuro para el recuadro
+        width: 300,
+        height: 300,
+        backgroundColor: '#333',
         borderRadius: 10,
         marginTop: 20,
         padding: 15,
     },
     lyricsText: {
         fontSize: 16,
-        color: '#fff', // Texto blanco
-        lineHeight: 24, // Espaciado entre líneas
+        color: '#fff',
+        lineHeight: 24,
     },
 });
 
