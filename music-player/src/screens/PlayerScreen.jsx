@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, ScrollView, Text } from 'react-native';
+import { View, StyleSheet, Image, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Importa los iconos
 import CardListMusic from '../components/CardListMusic';
@@ -16,7 +16,7 @@ const PlayerScreen = () => {
         <View style={styles.container}>
             {/* Imagen */}
             <Image
-                source={{ uri: 'https://placehold.co/400x250.png' }}
+                source={{ uri: 'https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png' }}
                 style={styles.image}
             />
 
@@ -24,107 +24,96 @@ const PlayerScreen = () => {
             <View style={styles.header}>
                 {/* Sección de texto con iconos (izquierda) */}
                 <View style={styles.textSection}>
-                    <Text style={styles.playlistTitle}>NSQK PLAYLIST</Text>
+                    <Text style={styles.playlistTitle}>The Weeknd Playlist</Text>
                     <View style={styles.info}>
                         <View style={styles.likes}>
-                            <Icon name="heart-outline" size={20} color="gray" />
+                            <Icon name="heart-outline" size={20} color="#b3b3b3" />
                             <Text style={styles.likesText}>1,200</Text>
                         </View>
                         <View style={styles.duracion}>
-                            <Icon name="clock-outline" size={20} color="gray" />
+                            <Icon name="clock-outline" size={20} color="#b3b3b3" />
                             <Text style={styles.durationText}>15 min</Text>
                         </View>
                     </View>
                 </View>
 
                 {/* Botón de play (derecha) */}
-                <Icon
-                    name="play-circle"
-                    size={50}
-                    color="#1DB954"
-                    onPress={() => console.log('Reproducir playlist')}
-                />
+                <TouchableOpacity onPress={() => console.log('Reproducir playlist')}>
+                    <Icon
+                        name="play-circle"
+                        size={50}
+                        color="#1DB954"
+                    />
+                </TouchableOpacity>
             </View>
 
             {/* CardListMusic */}
-            <ScrollView>
+            <ScrollView style={styles.scrollView}>
                 <View style={styles.cardContainer}>
                     <CardListMusic
-                        name="Canción 1"
-                        descripcion="Artista 1"
-                        imagen="https://placehold.co/300x300.png"
+                        name="Blinding Lights"
+                        descripcion="The Weeknd - After Hours"
+                        imagen="https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png"
                         onPress={() => handleCardPress({
-                            nombre: 'Canción 1',
-                            artista: 'Artista 1',
-                            imagen: 'https://placehold.co/100x100.png',
-                            duracion: '2:30'
-                        })}
-                    />
-
-                    {/* Repite para las demás cards */}
-                    <CardListMusic
-                        name="Canción 2"
-                        descripcion="Artista 2"
-                        imagen="https://placehold.co/300x300.png"
-                        onPress={() => handleCardPress({
-                            nombre: 'Canción 2',
-                            artista: 'Artista 2',
-                            imagen: 'https://placehold.co/100x100.png',
-                            duracion: '3:45'
+                            nombre: 'Blinding Lights',
+                            artista: 'The Weeknd',
+                            album: 'After Hours',
+                            imagen: 'https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png',
+                            duracion: '3:20'
                         })}
                     />
 
                     <CardListMusic
-                        name="Canción 2"
-                        descripcion="Artista 2"
-                        imagen="https://placehold.co/300x300.png"
+                        name="Save Your Tears"
+                        descripcion="The Weeknd - After Hours"
+                        imagen="https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png"
                         onPress={() => handleCardPress({
-                            nombre: 'Canción 2',
-                            artista: 'Artista 2',
-                            imagen: 'https://placehold.co/100x100.png',
-                            duracion: '3:45'
+                            nombre: 'Save Your Tears',
+                            artista: 'The Weeknd',
+                            album: 'After Hours',
+                            imagen: 'https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png',
+                            duracion: '3:35'
                         })}
                     />
 
                     <CardListMusic
-                        name="Canción 2"
-                        descripcion="Artista 2"
-                        imagen="https://placehold.co/300x300.png"
+                        name="In Your Eyes"
+                        descripcion="The Weeknd - After Hours"
+                        imagen="https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png"
                         onPress={() => handleCardPress({
-                            nombre: 'Canción 2',
-                            artista: 'Artista 2',
-                            imagen: 'https://placehold.co/100x100.png',
-                            duracion: '3:45'
+                            nombre: 'In Your Eyes',
+                            artista: 'The Weeknd',
+                            album: 'After Hours',
+                            imagen: 'https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png',
+                            duracion: '3:57'
                         })}
                     />
-
 
                     <CardListMusic
-                        name="Canción 2"
-                        descripcion="Artista 2"
-                        imagen="https://placehold.co/300x300.png"
+                        name="Heartless"
+                        descripcion="The Weeknd - After Hours"
+                        imagen="https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png"
                         onPress={() => handleCardPress({
-                            nombre: 'Canción 2',
-                            artista: 'Artista 2',
-                            imagen: 'https://placehold.co/100x100.png',
-                            duracion: '3:45'
+                            nombre: 'Heartless',
+                            artista: 'The Weeknd',
+                            album: 'After Hours',
+                            imagen: 'https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png',
+                            duracion: '3:18'
                         })}
                     />
-
 
                     <CardListMusic
-                        name="Canción 2"
-                        descripcion="Artista 2"
-                        imagen="https://placehold.co/300x300.png"
+                        name="After Hours"
+                        descripcion="The Weeknd - After Hours"
+                        imagen="https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png"
                         onPress={() => handleCardPress({
-                            nombre: 'Canción 2',
-                            artista: 'Artista 2',
-                            imagen: 'https://placehold.co/100x100.png',
-                            duracion: '3:45'
+                            nombre: 'After Hours',
+                            artista: 'The Weeknd',
+                            album: 'After Hours',
+                            imagen: 'https://upload.wikimedia.org/wikipedia/en/e/e6/The_Weeknd_-_Blinding_Lights.png',
+                            duracion: '6:01'
                         })}
                     />
-
-
                 </View>
             </ScrollView>
         </View>
@@ -134,63 +123,58 @@ const PlayerScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
-        backgroundColor: '#f5f5f5', // Color de fondo opcional
+        backgroundColor: '#121212', // Fondo oscuro similar a Spotify
     },
     header: {
         flexDirection: 'row',
-        justifyContent: 'space-between', // Alinea el texto a la izquierda y el ícono a la derecha
-        alignItems: 'center', // Centra verticalmente
-        marginBottom: 20,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 20,
     },
     textSection: {
-        flex: 1, // Ocupa el espacio disponible
+        flex: 1,
     },
     playlistTitle: {
         fontFamily: 'Poppins-Bold',
         fontSize: 24,
+        color: '#ffffff', // Texto blanco
         marginBottom: 10,
     },
     info: {
         flexDirection: 'row',
-        gap: 20, // Espacio entre los elementos
+        gap: 20,
     },
     likes: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 5, // Espacio entre el icono y el texto
+        gap: 5,
     },
     likesText: {
         fontFamily: 'Poppins-Regular',
         fontSize: 14,
-        color: '#666',
+        color: '#b3b3b3', // Texto gris claro
     },
     duracion: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 5, // Espacio entre el icono y el texto
+        gap: 5,
     },
     durationText: {
         fontFamily: 'Poppins-Regular',
         fontSize: 14,
-        color: '#666',
+        color: '#b3b3b3', // Texto gris claro
     },
     image: {
-        width: 400,
+        width: '100%',
         height: 250,
-        alignSelf: 'center', // Centra la imagen horizontalmente
-        marginTop: -15, // Separación desde la parte superior
-        marginBottom: 20, // Espacio entre imagen y card
-        borderRadius: 10, // Opcional para bordes redondeados
+        marginBottom: 20,
+    },
+    scrollView: {
+        paddingHorizontal: 20,
     },
     cardContainer: {
         flex: 1,
-        marginTop: 10,
-        marginBottom: 10,
     },
-    cardCard: {
-        margin: 2,
-    }
 });
 
 export default PlayerScreen;

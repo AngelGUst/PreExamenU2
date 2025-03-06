@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import { View, StyleSheet, Image, Text, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { Slider, Icon } from 'react-native-elements';
 
@@ -10,6 +10,7 @@ const PlaylistScreen = () => {
     // Estado para controlar la reproducción y el progreso
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0); // Progreso de la canción (0 a 100)
+    const [showLyrics, setShowLyrics] = useState(false); // Estado para mostrar/ocultar la letra
 
     // Función para manejar el botón de play/pause
     const togglePlayPause = () => {
@@ -21,16 +22,10 @@ const PlaylistScreen = () => {
         setProgress(value);
     };
 
-    // Función para formatear el tiempo (segundos a mm:ss)
-    const formatTime = (seconds) => {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = Math.floor(seconds % 60);
-        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    // Función para mostrar/ocultar la letra de la canción
+    const toggleLyrics = () => {
+        setShowLyrics(!showLyrics);
     };
-
-    // Tiempo actual y total (simulado)
-    const currentTime = (progress / 100) * 200; // Simula una canción de 200 segundos
-    const totalTime = 200; // Duración total de la canción
 
     return (
         <View style={styles.container}>
@@ -61,7 +56,7 @@ const PlaylistScreen = () => {
 
             {/* Tiempo debajo del slider */}
             <View style={styles.timeContainer}>
-                <Text style={styles.timeText}>{formatTime(currentTime)}</Text>
+                <Text style={styles.timeText}>0:00</Text>
                 <Text style={styles.timeText}>{cancion?.duracion}</Text>
             </View>
 
@@ -95,6 +90,27 @@ const PlaylistScreen = () => {
                     onPress={() => console.log('Siguiente canción')}
                 />
             </View>
+
+            {/* Botón para ver la letra de la canción (alineado a la izquierda) */}
+            <Icon
+                name="format-align-left"
+                type="material"
+                size={30}
+                color="#fff"
+                onPress={toggleLyrics}
+                containerStyle={styles.lyricsButton}
+            />
+
+            {/* Recuadro para la letra de la canción */}
+            {showLyrics && (
+                <View style={styles.lyricsContainer}>
+                    <ScrollView>
+                        <Text style={styles.lyricsText}>
+                            {cancion?.letra || "Letra no disponible."}
+                        </Text>
+                    </ScrollView>
+                </View>
+            )}
         </View>
     );
 };
@@ -133,7 +149,7 @@ const styles = StyleSheet.create({
     },
     progressBar: {
         width: '90%',
-        marginTop: 20,
+        marginTop: 10, // Ajusté el margen superior para subir el slider
     },
     thumb: {
         width: 12, // Ancho de la bolita
@@ -167,6 +183,24 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 3,
+    },
+    lyricsButton: {
+        alignSelf: 'flex-start', // Alinea el botón a la izquierda
+        marginLeft: 20, // Margen izquierdo para separarlo del borde
+        marginTop: 20, // Espacio entre los controles y el botón de letra
+    },
+    lyricsContainer: {
+        width: 300, // Ancho del recuadro
+        height: 300, // Alto del recuadro
+        backgroundColor: '#333', // Fondo oscuro para el recuadro
+        borderRadius: 10,
+        marginTop: 20,
+        padding: 15,
+    },
+    lyricsText: {
+        fontSize: 16,
+        color: '#fff', // Texto blanco
+        lineHeight: 24, // Espaciado entre líneas
     },
 });
 
