@@ -1,9 +1,15 @@
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import React from 'react';
 import { Icon } from 'react-native-elements';
 
 export default function CardListMusic(props) {
     const { name, descripcion, imagen, onPress } = props;
+    const [isLiked, setIsLiked] = useState(false); // Estado para manejar si la canción está "liked"
+
+    // Función para manejar el clic en el ícono de corazón
+    const handleLikePress = () => {
+        setIsLiked(!isLiked); // Cambiar el estado al hacer clic
+    };
 
     return (
         <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
@@ -24,13 +30,17 @@ export default function CardListMusic(props) {
 
                         {/* Iconos: Like y menú */}
                         <View style={styles.iconsContainer}>
-                            <Icon
-                                name="heart-outline"
-                                type="material-community"
-                                size={26}
-                                color="#b3b3b3"
-                                containerStyle={styles.icon}
-                            />
+                            {/* Ícono de corazón */}
+                            <TouchableOpacity onPress={handleLikePress}>
+                                <Icon
+                                    name={isLiked ? 'heart' : 'heart-outline'} // Cambiar el ícono según el estado
+                                    type="material-community"
+                                    size={26}
+                                    color={isLiked ? '#1DB954' : '#b3b3b3'} // Cambiar el color según el estado
+                                    containerStyle={styles.icon}
+                                />
+                            </TouchableOpacity>
+                            {/* Ícono de menú */}
                             <Icon
                                 name="dots-three-vertical"
                                 type="entypo"
